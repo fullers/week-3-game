@@ -68,7 +68,7 @@ var numGuessRemain = document.getElementById("numGuessRemain");
 
     if (placeholder == word)
     {
-      document.getElementById("hangimage").src = "assets/images/hangman_win.png";
+      document.getElementById("hangimage").src = "assets/images/hangman_win.jpg";
       numWins++
       alert("You guessed the word correctly. You win!");
     }
