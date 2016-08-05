@@ -1,101 +1,106 @@
 // Javascript to control the actions of the hangman game
 
-var wordsArray = ["Alf", "Hangman", "Divergent", "Insurgent", "Allegiant", "Aladdin", "Terminator"];
-//var wordsArray = ["monitor", "program", "application", "keyboard", "javascript", "gaming", "network"];
+var wordsArray = ["Hangman", "Divergent", "Insurgent", "Allegiant", "Aladdin", "Terminator"];
+
 var word;
-var goesLeft;
+var tries;
 var placeholder;
 var input;
 var wordLength;
 var wordSubstring;
-var currentWord;
 var inputArray = [];
 var numWins;
 
 var numGuessRemain = document.getElementById("numGuessRemain");
-
+var guessedLetters = document.getElementById('guessedLetters');
+var message = document.getElementById('message');
+  
   function newGame()
   {
 
-    placeholder = "";
-    goesLeft = 10;
+    placeholder = "_";
+    tries = 10;
     numWins = 0;
-    word = wordsArray[Math.floor(Math.random() * wordsArray.length)];
-    currentWord = 0;
-    word = wordsArray[currentWord];
+    
+    word = wordsArray[getRandom(0,wordsArray.length)];
     wordLength = word.length;
-    wordSubstring = currentWord.substring;
+   
     console.log(word);
-    //var myElement = document.getElementById("button").innerHTML = "Click to guess";
-    var myPicElement = document.getElementById("hangimage").src = "http://fetlar.kingston.ac.uk/pp/hangman10.jpg";
-
-    for (var count = 0; count < word.length; count++)
+    
+    var myPicElement = document.getElementById("hangimage").src = "assets/images/hangman10.png";
+    
+  for (var count = 0; count < wordLength; count++)
     {
-      placeholder = placeholder + " _";
+      placeholder = placeholder + " " + "_";
     }
 
     document.getElementById("placeholder").innerHTML = placeholder;
     //document.getElementById("gamestatus").innerHTML = "Game running";
 
-    numGuessRemain.innerHTML = goesLeft;
+    numGuessRemain.innerHTML = tries;
     wins.innerHTML = numWins;
   }
-
+  
+  function getRandom(min,max){
+    return Math.floor(Math.random() * (max - min) + min);
+  }
+  
   function guessLetter()
   {
+
     var correct = 0;
-
-    // var inputBox = document.getElementById("guessinput");
-    // input = inputBox.value;
-
-
-    for (var count = 0; count < wordLength; count++)
+    
+    for (var i = 0; i < word.length; i++)
     {
-      if (input == word.substring(count, count + 1))
+      if (input == word.substring(i, i + 1))
       {
          
         correct++;
-        placeholder = placeholder.substring(0, count) + input + placeholder.substring(count + 1, placeholder.length + 1);
+        placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
         document.getElementById("placeholder").innerHTML = placeholder;
       }
     }
 
     if (correct == 0)
     {
-      goesLeft--;
+      tries--;
+      numGuessRemain.innerHTML = tries;
     }
-    var url = document.getElementById("hangimage").src = "assets/images/hangman" + goesLeft + ".png";
+    var url = document.getElementById("hangimage").src = "assets/images/hangman" + tries + ".png";
 
     if (placeholder == word)
     {
       document.getElementById("hangimage").src = "assets/images/hangman_win.png";
       numWins++
-      alert("You guessed the word correctly. You win!");
+      message.innerHTML = "You guessed the word correctly. You win!";
     }
 
-    if (goesLeft == 0)
+    if (tries === 0)
     {
-      alert("You lose");
+      document.getElementById("hangimage").src = "assets/images/hangman_lost.png"
+      message.innerHTML ="Sorry, You lost!";
       newGame();
     }
   }
-//newGame();
-//document.getElementById("button").onclick = guessLetter;
+newGame();
+
 
 document.onkeyup = function(event) {
 
-  
- input = String.fromCharCode(event.keyCode).toLowerCase();
- var status = document.getElementById('status');
-    
-  
-     for (var i=0; i < inputArray.length; i++) {
-        inputArray.push(input);
 
-   status.innerHTML = input + " "; 
+ input = String.fromCharCode(event.keyCode).toLowerCase();
+ 
+  inputArray.push(input); 
+   
+
+     for (var i=0; i < inputArray.length; i++) {
+
+      guessedLetters.innerHTML = inputArray;
+      guessLetter();
  }
-  guessLetter();
-  newGame();
+  console.log("---------")
+  console.log(tries)
+  
 }
 
 
