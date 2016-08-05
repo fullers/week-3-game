@@ -31,7 +31,7 @@ var message = document.getElementById('message');
     
   for (var count = 0; count < wordLength; count++)
     {
-      placeholder = placeholder + " " + "_";
+      placeholder = placeholder + " _ ";
     }
 
     document.getElementById("placeholder").innerHTML = placeholder;
