@@ -1,7 +1,9 @@
 // Javascript to control the actions of the hangman game
 
+// Set array for Movie Titles
 var wordsArray = ["Hangman", "Divergent", "Insurgent", "Allegiant", "Aladdin", "Terminator"];
 
+// Set additional variables
 var word;
 var tries;
 var placeholder;
@@ -11,10 +13,14 @@ var wordSubstring;
 var inputArray = [];
 var numWins;
 
+// Set Elements used to display in HTML
 var numGuessRemain = document.getElementById("numGuessRemain");
 var guessedLetters = document.getElementById('guessedLetters');
 var message = document.getElementById('message');
   
+// Functions
+
+  // newGame will start the game
   function newGame()
   {
 
@@ -35,21 +41,23 @@ var message = document.getElementById('message');
     }
 
     document.getElementById("placeholder").innerHTML = placeholder;
-    //document.getElementById("gamestatus").innerHTML = "Game running";
-
+    
     numGuessRemain.innerHTML = tries;
     wins.innerHTML = numWins;
   }
   
+  // getRandom chooses an random word from the Movie Title (wordsArray)
   function getRandom(min,max){
     return Math.floor(Math.random() * (max - min) + min);
   }
   
+  // Controls when the images will display based on the number of tries, when the person inputs from the keyboard 
   function guessLetter()
   {
 
     var correct = 0;
     
+    // For loop to create the place holder and insert letters based on input
     for (var i = 0; i < word.length; i++)
     {
       if (input == word.substring(i, i + 1))
@@ -58,6 +66,7 @@ var message = document.getElementById('message');
         correct++;
         placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
         document.getElementById("placeholder").innerHTML = placeholder;
+        console.log(placeholder);
       }
     }
 
@@ -82,9 +91,12 @@ var message = document.getElementById('message');
       newGame();
     }
   }
+
+// Call Function
 newGame();
 
-
+// On Keyup function that captures the input and stores it into a varialbe
+// so it can be used to dsiplay in the HTML div with id tag guessedLetters
 document.onkeyup = function(event) {
 
 
