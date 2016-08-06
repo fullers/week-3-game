@@ -23,7 +23,7 @@ var message = document.getElementById("message");
   function newGame()
   {
 
-    placeholder = "_";
+    placeholder = "";
     tries = 10;
     numWins = 0;    
     word = wordsArray[getRandom(0,wordsArray.length)];
@@ -35,7 +35,7 @@ var message = document.getElementById("message");
     
     for (var count = 0; count < wordLength; count++)
     {
-      placeholder = placeholder + " _ ";
+      placeholder = placeholder + "_";
     }
 
     document.getElementById("placeholder").innerHTML = placeholder;
@@ -55,16 +55,37 @@ var message = document.getElementById("message");
     var correct = 0;
     
     // For loop to create the place holder and insert letters based on input
-    for (var i = 0; i < word.length; i++)
-    {
-      if (input == word.substring(i, i + 1))
-      {         
-        correct++;
-        placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
-        document.getElementById("placeholder").innerHTML = placeholder;
-        console.log(word.substring(0, i)); 
+    
+    // Greg's code to input letters and create place holders.
+    word = word.toLowerCase();
+    var index = word.indexOf(input);
+    if (index === -1){
+      // guess is incorrect
+    } else { 
+      for (var i = 0; i < word.length; i++) {
+        console.log(word[i], input, word[i] === input);
+        if (word[i] === input){
+          placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
+          console.log(placeholder);
+         } 
+         //else {
+        //   placeholder += '_'
+        // }
       }
     }
+
+    console.log(index, placeholder, word);
+    document.getElementById('placeholder').innerHTML = placeholder;
+    // for (var i = 0; i < word.length; i++)
+    // {
+    //   if (input == word.substring(i, i + 1)) // word.indexOf(input) !== -1
+    //   {         
+    //     correct++;
+    //     placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
+    //     document.getElementById("placeholder").innerHTML = placeholder;
+    //     console.log(word.substring(0, i)); 
+    //   }
+    // }
 
     if (correct == 0)
     {
@@ -101,10 +122,10 @@ document.onkeyup = function(event) {
   inputArray.push(input);   
 
      for (var i=0; i < inputArray.length; i++) {
-
       guessedLetters.innerHTML = inputArray;
-      guessLetter();
  }
+
+ guessLetter();
   console.log("---------");
   console.log("Tries: " + tries);
   
