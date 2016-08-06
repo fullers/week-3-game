@@ -42,6 +42,7 @@ var message = document.getElementById("message");
     
     numGuessRemain.innerHTML = tries;
     wins.innerHTML = numWins;
+
   }
   
   // getRandom chooses an random word from the Movie Title (wordsArray)
@@ -61,7 +62,9 @@ var message = document.getElementById("message");
     var index = word.indexOf(input);
     if (index === -1){
       // guess is incorrect
+      correct = false;
     } else { 
+      correct = true;
       for (var i = 0; i < word.length; i++) {
         //console.log(word[i], input, word[i] === input);
         if (word[i] === input){
@@ -86,12 +89,13 @@ var message = document.getElementById("message");
     //   }
     // }
 
-    if (correct == 0)
+    if (!correct)
     {
       tries--;
       numGuessRemain.innerHTML = tries;
+      document.getElementById("hangimage").src = "assets/images/hangman" + tries + ".png";
     }
-    var url = document.getElementById("hangimage").src = "assets/images/hangman" + tries + ".png";
+    
 
     if (placeholder == word)
     {
@@ -103,9 +107,10 @@ var message = document.getElementById("message");
     if (tries === 0)
     {
       document.getElementById("hangimage").src = "assets/images/hangman_lost.png"
-      message.innerHTML ="Sorry, You lost!";
-      newGame();
-    }
+      message.innerHTML ="<h2>Sorry, You lost!</h2>";
+     
+    } 
+    //newGame();
     //console.log("Correct: " + correct);
   }
 
