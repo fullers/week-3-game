@@ -15,9 +15,8 @@ var numWins;
 
 // Set Elements used to display in HTML
 var numGuessRemain = document.getElementById("numGuessRemain");
-var guessedLetters = document.getElementById('guessedLetters');
-var message = document.getElementById('message');
-  
+var guessedLetters = document.getElementById("guessedLetters");
+var message = document.getElementById("message"); 
 // Functions
 
   // newGame will start the game
@@ -26,8 +25,7 @@ var message = document.getElementById('message');
 
     placeholder = "_";
     tries = 10;
-    numWins = 0;
-    
+    numWins = 0;    
     word = wordsArray[getRandom(0,wordsArray.length)];
     wordLength = word.length;
    
@@ -35,7 +33,7 @@ var message = document.getElementById('message');
     
     var myPicElement = document.getElementById("hangimage").src = "assets/images/hangman10.png";
     
-  for (var count = 0; count < wordLength; count++)
+    for (var count = 0; count < wordLength; count++)
     {
       placeholder = placeholder + " _ ";
     }
@@ -47,13 +45,12 @@ var message = document.getElementById('message');
   }
   
   // getRandom chooses an random word from the Movie Title (wordsArray)
-  function getRandom(min,max){
+  function getRandom(min,max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
   
   // Controls when the images will display based on the number of tries, when the person inputs from the keyboard 
-  function guessLetter()
-  {
+  function guessLetter() {
 
     var correct = 0;
     
@@ -61,8 +58,7 @@ var message = document.getElementById('message');
     for (var i = 0; i < word.length; i++)
     {
       if (input == word.substring(i, i + 1))
-      {
-         
+      {         
         correct++;
         placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
         document.getElementById("placeholder").innerHTML = placeholder;
@@ -99,21 +95,16 @@ newGame();
 // so it can be used to dsiplay in the HTML div with id tag guessedLetters
 document.onkeyup = function(event) {
 
-
  input = String.fromCharCode(event.keyCode).toLowerCase();
  
-  inputArray.push(input); 
-   
+  inputArray.push(input);   
 
      for (var i=0; i < inputArray.length; i++) {
 
       guessedLetters.innerHTML = inputArray;
       guessLetter();
  }
-  console.log("---------")
-  console.log(tries)
+  console.log("---------");
+  console.log(tries);
   
 }
-
-
-
