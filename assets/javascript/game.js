@@ -62,7 +62,7 @@ var message = document.getElementById("message");
         correct++;
         placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
         document.getElementById("placeholder").innerHTML = placeholder;
-        console.log(placeholder);
+        console.log(word.substring(0, i)); 
       }
     }
 
@@ -76,7 +76,7 @@ var message = document.getElementById("message");
     if (placeholder == word)
     {
       document.getElementById("hangimage").src = "assets/images/hangman_win.png";
-      numWins++
+      numWins++;
       message.innerHTML = "You guessed the word correctly. You win!";
     }
 
@@ -86,6 +86,7 @@ var message = document.getElementById("message");
       message.innerHTML ="Sorry, You lost!";
       newGame();
     }
+    console.log("Correct: " + correct);
   }
 
 // Call Function
@@ -105,6 +106,6 @@ document.onkeyup = function(event) {
       guessLetter();
  }
   console.log("---------");
-  console.log(tries);
+  console.log("Tries: " + tries);
   
 }
