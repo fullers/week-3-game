@@ -101,13 +101,13 @@ var message = document.getElementById("message");
     {
       document.getElementById("hangimage").src = "assets/images/hangman_win.png";
       numWins++;
-      message.innerHTML = "You guessed the word correctly. You win!";
+      message.innerHTML = "<h3>You guessed the word correctly. You win!</h3>";
     }
 
     if (tries === 0)
     {
       document.getElementById("hangimage").src = "assets/images/hangman_lost.png"
-      message.innerHTML ="<h2>Sorry, You lost!</h2>";
+      message.innerHTML ="<h3>Sorry, You lost!</h3>";
      
     } 
     //newGame();
