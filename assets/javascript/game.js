@@ -63,19 +63,18 @@ var message = document.getElementById("message");
       // guess is incorrect
     } else { 
       for (var i = 0; i < word.length; i++) {
-        console.log(word[i], input, word[i] === input);
+        //console.log(word[i], input, word[i] === input);
         if (word[i] === input){
           placeholder = placeholder.substring(0, i) + input + placeholder.substring(i + 1, placeholder.length + 1);
-          console.log(placeholder);
+          //console.log(placeholder);
          } 
-         //else {
-        //   placeholder += '_'
-        // }
       }
     }
 
-    console.log(index, placeholder, word);
+    //console.log(index, placeholder, word);
     document.getElementById('placeholder').innerHTML = placeholder;
+    
+    //My previous code to create the place holder an input the number, this did not work well.
     // for (var i = 0; i < word.length; i++)
     // {
     //   if (input == word.substring(i, i + 1)) // word.indexOf(input) !== -1
@@ -107,7 +106,7 @@ var message = document.getElementById("message");
       message.innerHTML ="Sorry, You lost!";
       newGame();
     }
-    console.log("Correct: " + correct);
+    //console.log("Correct: " + correct);
   }
 
 // Call Function
@@ -126,7 +125,7 @@ document.onkeyup = function(event) {
  }
 
  guessLetter();
-  console.log("---------");
-  console.log("Tries: " + tries);
+  //console.log("---------");
+  //console.log("Tries: " + tries);
   
 }
