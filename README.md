@@ -2,7 +2,7 @@
 
 This is a Hangman game designed in HTML, JavaScript, and Bootstrap.  I created an array of movie titles which the user may use the keyboard to try and guess the word.  Like the traditional Hangman game, if the letter is guessed correctly then it will appear.  If the letter is not correct an array of chosen letters is traked and images are displayed showing the stick figure being hung.  The user will have 10 tries to guess the word correctly.
 
-You may go to [https://fullers-week-3-game.herokuapp.com](https://fullers-week-3-game.herokuapp.com) to view a demo of the application.
+You may go to [https://fullers-hangman.herokuapp.com](https://fullers-hangman.herokuapp.com) to view a demo of the application.
 
 
 ## Technologies used
