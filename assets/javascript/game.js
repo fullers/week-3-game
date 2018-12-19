@@ -34,6 +34,9 @@ var message = document.getElementById("message");
     
     var myPicElement = document.getElementById("hangimage").src = "assets/images/hangman10.png";
      message.innerHTML ="";
+
+    document.getElementById("guessedLetters").innerHTML = "";
+   
     
     for (var count = 0; count < wordLength; count++)
     {
@@ -110,7 +113,6 @@ var message = document.getElementById("message");
     {
       document.getElementById("hangimage").src = "assets/images/hangman_lost.png"
       message.innerHTML ="<h3>Sorry, You lost!</h3><br><h3>Current Word: "+word+"<br><br><button class='btn btn-default' onclick='newGame()'>Play Again!</button>";
-
 
       document.onkeydown = function(event) {
         event.preventDefault();
