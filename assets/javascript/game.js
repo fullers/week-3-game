@@ -106,13 +106,13 @@ var message = document.getElementById("message");
     {
       document.getElementById("hangimage").src = "assets/images/hangman_win.png";
       numWins++;
-      message.innerHTML = "<h3>You guessed the word correctly. You win!</h3>";
+      message.innerHTML = "<h3>You guessed the word correctly. You win!</h3><br><button class='btn btn-success' onclick='newGame()'>Play Again!</button>";
     }
 
     if (tries <= 0)
     {
       document.getElementById("hangimage").src = "assets/images/hangman_lost.png"
-      message.innerHTML ="<h3>Sorry, You lost!</h3><br><h3>Current Word: "+word+"<br><br><button class='btn btn-default' onclick='newGame()'>Play Again!</button>";
+      message.innerHTML ="<h3>Sorry, You lost!</h3><br><h3>Current Word: "+word+"<br><br><button class='btn btn-success' onclick='newGame()'>Play Again!</button>";
 
       document.onkeydown = function(event) {
         event.preventDefault();
