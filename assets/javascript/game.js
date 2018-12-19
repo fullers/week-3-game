@@ -17,6 +17,7 @@ var numWins;
 var numGuessRemain = document.getElementById("numGuessRemain");
 var guessedLetters = document.getElementById("guessedLetters");
 var message = document.getElementById("message"); 
+
 // Functions
 
   // newGame will start the game
@@ -32,6 +33,7 @@ var message = document.getElementById("message");
     console.log(word);
     
     var myPicElement = document.getElementById("hangimage").src = "assets/images/hangman10.png";
+     message.innerHTML ="";
     
     for (var count = 0; count < wordLength; count++)
     {
@@ -104,11 +106,15 @@ var message = document.getElementById("message");
       message.innerHTML = "<h3>You guessed the word correctly. You win!</h3>";
     }
 
-    if (tries === 0)
+    if (tries <= 0)
     {
       document.getElementById("hangimage").src = "assets/images/hangman_lost.png"
-      message.innerHTML ="<h3>Sorry, You lost!</h3>";
-     
+      message.innerHTML ="<h3>Sorry, You lost!</h3><br><h3>Current Word: "+word+"<br><br><button class='btn btn-default' onclick='newGame()'>Play Again!</button>";
+
+
+      document.onkeydown = function(event) {
+        event.preventDefault();
+      }
     } 
     //newGame();
     //console.log("Correct: " + correct);
@@ -119,8 +125,25 @@ newGame();
 
 // On Keyup function that captures the input and stores it into a varialbe
 // so it can be used to dsiplay in the HTML div with id tag guessedLetters
-document.onkeyup = function(event) {
 
+  
+document.onkeydown = function(event) {
+  var keyCode = event.keyCode;
+
+  /* 
+    48-57 - (0-9)Numbers
+    65-90 - (A-Z)
+    97-122 - (a-z)
+    8 - (backspace)
+    32 - (space)
+    */
+ 
+ // Restrict all input except for Alpha and Numeric inputs
+ if ( !( (keyCode > 48 && keyCode < 57) || (keyCode > 64 && keyCode < 90) )) {
+    event.preventDefault();
+    return false;
+ }
+ 
  input = String.fromCharCode(event.keyCode).toLowerCase();
  
   inputArray.push(input);   
@@ -132,5 +155,6 @@ document.onkeyup = function(event) {
  guessLetter();
   //console.log("---------");
   //console.log("Tries: " + tries);
+  console.log(input, event.keyCode);
   
 }
